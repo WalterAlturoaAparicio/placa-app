@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:placa_app/services/local_auth.service.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:snippet_coder_utils/ProgressHUD.dart';
 import 'package:snippet_coder_utils/hex_color.dart';
@@ -14,19 +15,20 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool isAPICallProcess = false;
   bool hidePassword = true;
+  bool authenticated = false;
 
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
 
   String? username;
   String? password;
 
-  String colorFruithz = "#183e9e";
+  String mainColor = "#0b0d24";
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor(colorFruithz),
+        backgroundColor: HexColor(mainColor),
         body: ProgressHUD(
           child: Form(
             child: _loginUI(context),
@@ -43,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _loginUI(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -79,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.white),
             ),
           ),
-          FormHelper.inputFieldWidget(context, "username", "UserName",
+          FormHelper.inputFieldWidget(context, "username", "Usuario",
               (onValidateVal) {
             return onValidateVal.isEmpty ? "Usuario no puede ir vacio" : null;
           }, (onSavedVal) {
@@ -95,8 +97,8 @@ class _LoginPageState extends State<LoginPage> {
               borderRadius: 10),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: FormHelper.inputFieldWidget(context, "password", "Password",
-                (onValidateVal) {
+            child: FormHelper.inputFieldWidget(
+                context, "password", "Contraseña", (onValidateVal) {
               return onValidateVal.isEmpty
                   ? "La contraseña no puede ir vacio"
                   : null;
@@ -148,18 +150,21 @@ class _LoginPageState extends State<LoginPage> {
             height: 20,
           ),
           Center(
-            child: FormHelper.submitButton("Ingresar", () {
+            child: FormHelper.submitButton("Ingresar", () async {
               if (validateAndSave()) {
-                setState(() {
-                  isAPICallProcess = true;
-                });
-              }
-              if (username == "admin" && password == "admin") {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/home', (route) => false);
+                if (username == "admin" && password == "admin") {
+                  final authenticate = await LocalAuth.authenticate();
+                  setState(() {
+                    authenticated = authenticate;
+                  });
+                }
+                if (authenticated) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/home', (route) => false);
+                }
               }
             },
-                btnColor: HexColor(colorFruithz),
+                btnColor: HexColor(mainColor),
                 borderColor: Colors.white,
                 txtColor: Colors.white,
                 borderRadius: 10),
@@ -199,6 +204,12 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 )),
               )),
+          const SizedBox(
+            height: 80,
+          ),
+          Image.asset(
+            "assets/images/banda_policia.png",
+          ),
         ],
       ),
     );

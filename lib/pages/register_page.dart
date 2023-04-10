@@ -21,13 +21,13 @@ class _RegisterPageState extends State<RegisterPage> {
   String? password;
   String? email;
 
-  String colorFruithz = "#183e9e";
+  String mainColor = "#0b0d24";
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor(colorFruithz),
+        backgroundColor: HexColor(mainColor),
         body: ProgressHUD(
           child: Form(
             child: _loginUI(context),
@@ -80,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   color: Colors.white),
             ),
           ),
-          FormHelper.inputFieldWidget(context, "username", "UserName",
+          FormHelper.inputFieldWidget(context, "username", "Usuario",
               (onValidateVal) {
             return onValidateVal.isEmpty ? "Username can't be empty" : null;
           }, (onSavedVal) {
@@ -96,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
               borderRadius: 10),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: FormHelper.inputFieldWidget(context, "password", "Password",
+            child: FormHelper.inputFieldWidget(context, "password", "Contrseña",
                 (onValidateVal) {
               return onValidateVal.isEmpty ? "Password can't be empty" : null;
             }, (onSavedVal) {
@@ -127,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: FormHelper.inputFieldWidget(
               context,
               "email",
-              "Email",
+              "Correo",
               (onValidateVal) {
                 return onValidateVal.isEmpty ? "Email can't be empty" : null;
               },
@@ -150,13 +150,24 @@ class _RegisterPageState extends State<RegisterPage> {
           Center(
             child: FormHelper.submitButton("Register", () {
               if (validateAndSave()) {
-                setState(() {
-                  isAPICallProcess = true;
-                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.transparent,
+                      content: Container(
+                        padding: const EdgeInsets.all(16),
+                        height: 90,
+                        decoration: const BoxDecoration(
+                            color: Color(0xFFC72C41),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child:
+                            const Text("No se puede registrar nuevos usuarios"),
+                      )),
+                );
               }
-              
             },
-                btnColor: HexColor(colorFruithz),
+                btnColor: HexColor(mainColor),
                 borderColor: Colors.white,
                 txtColor: Colors.white,
                 borderRadius: 10),
@@ -186,6 +197,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 )),
               )),
+          const SizedBox(
+            height: 60,
+          ),
+          Image.asset(
+            "assets/images/banda_policia.png",
+          ),
         ],
       ),
     );

@@ -9,12 +9,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomePage> {
-  String colorFruithz = "#183e9e";
+  String mainColor = "#0b0d24";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: HexColor(mainColor),
       appBar: AppBar(
+        backgroundColor: HexColor("#14173b"),
         leading: IconButton(
           icon: const Icon(Icons.exit_to_app),
           iconSize: 30.0,
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomePage> {
           },
         ),
         title: const Text(
-          'Chats',
+          'Escaneo',
           style: TextStyle(
             fontSize: 28.0,
             fontWeight: FontWeight.bold,
@@ -39,6 +40,7 @@ class _HomeScreenState extends State<HomePage> {
             color: Colors.white,
             onPressed: () {},
           ),
+        
         ],
       ),
       body: Column(
