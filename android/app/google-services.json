@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "804373442697",
+    "project_id": "placa-app-605f5",
+    "storage_bucket": "placa-app-605f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804373442697:android:87e8f278b6a701afa75658",
+        "android_client_info": {
+          "package_name": "com.example.placa_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804373442697-583ri953th6nv97n1bh7lg7uskmahejp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfXA10kA49XRukaumYdo7vzfzsKX7jsOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804373442697-583ri953th6nv97n1bh7lg7uskmahejp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

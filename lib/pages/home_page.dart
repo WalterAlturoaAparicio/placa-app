@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomePage> {
           },
         ),
         title: const Text(
-          'Escaneo',
+          'Info FON393',
           style: TextStyle(
             fontSize: 28.0,
             fontWeight: FontWeight.bold,
@@ -40,13 +40,10 @@ class _HomeScreenState extends State<HomePage> {
             color: Colors.white,
             onPressed: () {},
           ),
-        
         ],
       ),
       body: Column(
-        children: <Widget>[
-          
-        ],
+        children: <Widget>[Image.asset("assets/images/FON393.jpg")],
       ),
     );
   }
