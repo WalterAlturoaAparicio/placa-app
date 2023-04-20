@@ -48,25 +48,18 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 5.2,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.white, Colors.white]),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(100),
-                    bottomRight: Radius.circular(100))),
+            height: MediaQuery.of(context).size.height / 3.5,
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Align(
                 alignment: Alignment.center,
                 child: Image.asset(
                   "assets/images/logoPlaca.png",
-                  width: 140,
-                  fit: BoxFit.contain,
+                  width: MediaQuery.of(context).size.width,
+                  height: 195,
+                  fit: BoxFit.cover,
                 ),
               )
             ]),
