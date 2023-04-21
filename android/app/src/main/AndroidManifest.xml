@@ -2,7 +2,7 @@
     package="com.example.placa_app">
     <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
    <application
-        android:label="placa_app"
+        android:label="BDAPON"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
